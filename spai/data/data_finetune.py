@@ -598,11 +598,18 @@ def build_transform(is_train, config) -> Callable[[np.ndarray], np.ndarray]:
             transforms_list.append(
                 A.Resize(height=config.DATA.IMG_SIZE, width=config.DATA.IMG_SIZE)
             )
+        # TODO (Fix B3 - Chest X-Ray augmentation pipeline):
+        # Replace photography-specific Albumentations transforms with radiograph-appropriate augmentations
+        # e.g., Quantum noise simulation, Exposure variation, Random grid-line artifacts, 
+        # Scanner-specific PSF blur, Random contrast window shifts.
+        # Consider replacing Albumentations with TorchIO or MONAI.
         transforms_list.extend([
             A.GaussianBlur(blur_limit=(3, 9),
                            sigma_limit=(0.01, 0.5),
                            p=config.AUG.GAUSSIAN_BLUR_PROB),
             A.GaussNoise(p=config.AUG.GAUSSIAN_NOISE_PROB),
+            # TODO (Fix B2 - Disable colour augmentations for grayscale input):
+            # Ensure these probabilities are 0.0 when training on OpenI.
             A.ColorJitter(
                 p=config.AUG.COLOR_JITTER,
                 brightness=config.AUG.COLOR_JITTER_BRIGHTNESS_RANGE,
@@ -630,6 +637,11 @@ def build_transform(is_train, config) -> Callable[[np.ndarray], np.ndarray]:
             transforms_list.append(
                 A.Normalize(mean=0., std=1.)
             )
+        # TODO (Fix B1 - OpenI-Appropriate Normalization):
+        # Add a condition to replace ImageNet mean/std normalization with statistics 
+        # computed from the OpenI training split if config specifies it.
+        # elif config.MODEL.REQUIRED_NORMALIZATION == "dataset_specific":
+        #     transforms_list.append(A.Normalize(mean=[0.482], std=[0.237]))
         else:
             raise RuntimeError(f"Unsupported Normalization: {config.MODEL.REQUIRED_NORMALIZATION}")
         transforms_list.append(ToTensorV2())

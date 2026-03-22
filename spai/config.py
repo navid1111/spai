@@ -125,6 +125,8 @@ _C.MODEL.DROP_PATH_RATE = 0.1
 # Label Smoothing
 _C.MODEL.LABEL_SMOOTHING = 0.1
 # Required normalization to be applied to the image before provided to the model.
+# TODO (Fix B1 - OpenI-Appropriate Normalization):
+# Add support for "dataset_specific" normalization
 _C.MODEL.REQUIRED_NORMALIZATION = "imagenet"
 # Approach used for the Synthetic Image Detection task. "single_extraction" and "freq_restoration"
 # are currently supported.
@@ -191,6 +193,9 @@ _C.MODEL.FRE = CN()
 _C.MODEL.FRE.MASKING_RADIUS = 16
 _C.MODEL.FRE.PROJECTOR_LAST_LAYER_ACTIVATION_TYPE = "gelu"
 _C.MODEL.FRE.ORIGINAL_IMAGE_FEATURES_BRANCH = False
+# TODO (Fix B4 - Resolution-Based Scale Embedding in FRE):
+# Add a flag to enable scale embedding
+# _C.MODEL.FRE.USE_SCALE_EMBEDDING = False
 _C.MODEL.FRE.DISABLE_RECONSTRUCTION_SIMILARITY = False
 
 # PatchBasedMFViT related parameters
@@ -275,6 +280,8 @@ _C.TRAIN.LAYER_DECAY = 1.0
 # Augmentation settings
 # -----------------------------------------------------------------------------
 _C.AUG = CN()
+# TODO (Fix B3 - Chest X-Ray augmentation pipeline):
+# Add radiograph-appropriate augmentations parameters here (e.g., quantum noise, grid lines, PSF blur)
 # Crop augmentation
 _C.AUG.MIN_CROP_AREA = 0.2
 _C.AUG.MAX_CROP_AREA = 1.0
@@ -299,6 +306,8 @@ _C.AUG.WEBP_COMPRESSION_PROB = .0
 _C.AUG.WEBP_MIN_QUALITY = 50
 _C.AUG.WEBP_MAX_QUALITY = 100
 # Color jitter augmentation
+# TODO (Fix B2 - Disable colour augmentations for grayscale input):
+# Add: config.AUG.GRAYSCALE_PROB = 0.0 and disable saturation
 _C.AUG.COLOR_JITTER = .0
 _C.AUG.COLOR_JITTER_BRIGHTNESS_RANGE = (0.8, 1.2)
 _C.AUG.COLOR_JITTER_CONTRAST_RANGE = (0.8, 1.2)
@@ -353,6 +362,9 @@ _C.TEST.VIEWS_REDUCTION_APPROACH = "mean"
 _C.TEST.EXPORT_IMAGE_PATCHES = False
 # -----------------------------------------------------------------------------
 # Setting for Test-Time Perturbations
+# TODO (Fix B5 - Test-Time Augmentation for Orientation Robustness):
+# Add configuration for TTA (e.g. 8 orientations: 0, 90, 180, 270 + flips)
+# _C.TEST.USE_TTA = False
 # -----------------------------------------------------------------------------
 # Gaussian blur perturbation.
 _C.TEST.GAUSSIAN_BLUR = False

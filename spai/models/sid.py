@@ -712,6 +712,9 @@ class FrequencyRestorationEstimator(nn.Module):
         original_image_features_branch: bool = False,
         dropout: float = 0.5,
         disable_reconstruction_similarity: bool = False
+        # TODO (Fix B4 - Resolution-Based Scale Embedding in FRE):
+        # Add scale embedding parameters e.g.:
+        # requires_scale_embedding: bool = False,
     ):
         super().__init__()
 
@@ -792,6 +795,10 @@ class FrequencyRestorationEstimator(nn.Module):
             if self.original_features_processor is not None:
                 orig = self.original_features_processor(orig)  # B x proj_dim
                 x = torch.cat([x, orig], dim=1)  # B x (proj_dim + 6 * N)
+        
+        # TODO (Fix B4 - Resolution-Based Scale Embedding in FRE):
+        # Concatenate scale embedding S to the output vector x if enabled.
+        # e.g., x = torch.cat([x, scale_embedded_tensor], dim=1)
 
         return x
 
