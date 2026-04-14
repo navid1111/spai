@@ -137,3 +137,4 @@ weights
 .DS_Store
 output/
 pretrains/
+data/dataset

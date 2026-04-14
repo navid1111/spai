@@ -1,0 +1,29 @@
+_wandb:
+    value:
+        cli_version: 0.25.1
+        e:
+            dxki5v7gz17ez258d73h3i8etc8chtd0:
+                email: navidkamal@iut-dhaka.edu
+                executable: E:\research\spai\spai\.venv\Scripts\python.exe
+                git:
+                    commit: 80d60a82d6ff624abb9c18b8563fdeb7bd3381d8
+                    remote: https://github.com/navid1111/spai.git
+                host: KAMAL
+                os: Windows-10-10.0.26200-SP0
+                program: <python with no main file>
+                python: CPython 3.11.14
+                root: E:\research\spai\spai
+                startedAt: "2026-03-24T15:28:27.062557Z"
+                writerId: dxki5v7gz17ez258d73h3i8etc8chtd0
+        m: []
+        python_version: 3.11.14
+        t:
+            "3":
+                - 2
+                - 13
+            "4": 3.11.14
+            "5": 0.25.1
+            "8":
+                - 3
+            "12": 0.25.1
+            "13": windows-amd64
