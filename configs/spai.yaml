@@ -4,6 +4,8 @@ MODEL:
   NAME: finetune
   DROP_PATH_RATE: 0.1
   NUM_CLASSES: 2
+  # TODO (Fix B1 - OpenI-Appropriate Normalization):
+  # Change REQUIRED_NORMALIZATION to "dataset_specific"
   REQUIRED_NORMALIZATION: "positive_0_1"
   RESOLUTION_MODE: "arbitrary"
   FEATURE_EXTRACTION_BATCH: 400
@@ -37,6 +39,10 @@ DATA:
   AUGMENTED_VIEWS: 4
   TEST_PREFETCH_FACTOR: 1
 AUG:
+  # TODO (Fix B2 - Disable colour augmentations for grayscale input):
+  # Add:
+  # GRAYSCALE_PROB: 0.0
+  # SATURATION: 0.0
   COLOR_JITTER: 0.
 TRAIN:
   EPOCHS: 35

@@ -1,0 +1,15 @@
+{
+  "os": "Windows-10-10.0.26200-SP0",
+  "python": "CPython 3.11.14",
+  "startedAt": "2026-03-24T15:28:27.062557Z",
+  "program": "<python with no main file>",
+  "git": {
+    "remote": "https://github.com/navid1111/spai.git",
+    "commit": "80d60a82d6ff624abb9c18b8563fdeb7bd3381d8"
+  },
+  "email": "navidkamal@iut-dhaka.edu",
+  "root": "E:\\research\\spai\\spai",
+  "host": "KAMAL",
+  "executable": "E:\\research\\spai\\spai\\.venv\\Scripts\\python.exe",
+  "writerId": "dxki5v7gz17ez258d73h3i8etc8chtd0"
+}

@@ -1132,6 +1132,11 @@ def validate(
             images = images.cuda(non_blocking=True)
         target = target.cuda(non_blocking=True)
 
+        # TODO (Fix B5 - Test-Time Augmentation for Orientation Robustness):
+        # Implement TTA inference here by averaging predictions across 
+        # multiple augmented views (e.g. 0, 90, 180, 270 degrees + horizontal flips)
+        # if config.TEST.USE_TTA is enabled.
+
         # Compute output.
         if isinstance(images, list) and config.TEST.EXPORT_IMAGE_PATCHES:
             export_dirs: list[pathlib.Path] = [
