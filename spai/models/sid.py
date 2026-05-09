@@ -612,9 +612,10 @@ class MFViT(nn.Module):
                 x = self.outer_instance.features_processor.exportable_forward(x, x_low, x_high)
                 return x
         model: ExportableMFVit = ExportableMFVit()
-        x: torch.Tensor = torch.rand((3, 3, 224, 224))
-        # x_low: torch.Tensor = torch.rand((3, 3, 224, 224))
-        # x_hi: torch.Tensor = torch.rand((3, 3, 224, 224))
+        device = outer_instance.frequencies_mask.device
+        x: torch.Tensor = torch.rand((3, 3, 224, 224), device=device)
+        # x_low: torch.Tensor = torch.rand((3, 3, 224, 224), device=device)
+        # x_hi: torch.Tensor = torch.rand((3, 3, 224, 224), device=device)
 
         # Required image preprocessing.
         x_low, x_hi = filters.filter_image_frequencies(

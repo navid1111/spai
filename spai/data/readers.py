@@ -64,7 +64,7 @@ class FileSystemReader(DataReader):
         self.root_path: pathlib.Path = root_path
 
     def read_csv_file(self, path: str) -> list[dict[str, Any]]:
-        with (self.root_path/path).open("r") as f:
+        with (self.root_path/path).open("r", encoding="utf-8") as f:
             reader = csv.DictReader(f, delimiter=",")
             contents: list[dict[str, Any]] = [row for row in reader]
         return contents

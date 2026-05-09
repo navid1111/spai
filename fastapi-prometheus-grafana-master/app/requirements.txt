@@ -1,0 +1,14 @@
+prometheus-fastapi-instrumentator
+prometheus-client
+uvicorn
+fastapi
+python-multipart
+sqlalchemy
+pymysql
+cryptography
+pillow
+numpy
+onnxruntime
+opencv-python-headless
+pytest
+httpx
