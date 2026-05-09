@@ -375,3 +375,136 @@ rate(ml_detections_total[5m]) > 100
 * [Prometheus Best Practices](https://prometheus.io/docs/practices/instrumentation/)
 * [Grafana Dashboard Best Practices](https://grafana.com/docs/grafana/latest/dashboards/)
 * [Data Drift in Machine Learning](https://towardsdatascience.com/data-drift-detection-in-machine-learning-models-e17e1b1e24ba)
+
+# FastAPI Fake Image Detection Application
+
+This README provides instructions on how to set up, run, and monitor the FastAPI application for fake image detection.
+
+---
+
+## Prerequisites
+
+Ensure the following are installed on your system:
+
+1. **Docker**: [Install Docker](https://docs.docker.com/get-docker/)
+2. **Docker Compose**: [Install Docker Compose](https://docs.docker.com/compose/install/)
+3. **Python 3.8+**: [Install Python](https://www.python.org/downloads/)
+4. **Virtual Environment** (optional but recommended for development):
+   ```bash
+   python -m venv .venv
+   ```
+
+---
+
+## Setup Instructions
+
+### 1. Clone the Repository
+
+```bash
+git clone <repository-url>
+cd fastapi-prometheus-grafana-master
+```
+
+### 2. Configure the Environment
+
+- Create a `.env` file in the `fastapi-prometheus-grafana-master` directory with the following variables:
+
+```env
+MYSQL_ROOT_PASSWORD=rootpassword
+MYSQL_DATABASE=fake_image_detection
+MYSQL_USER=user
+MYSQL_PASSWORD=password
+```
+
+### 3. Build and Start the Application
+
+Run the following commands to build and start the application:
+
+```bash
+docker compose up -d --build
+```
+
+This will:
+- Build the FastAPI application.
+- Start the MySQL database.
+- Start Prometheus and Grafana for monitoring.
+
+### 4. Access the Application
+
+- **FastAPI Application**: [http://localhost:8000](http://localhost:8000)
+- **Swagger UI**: [http://localhost:8000/docs](http://localhost:8000/docs)
+- **Prometheus**: [http://localhost:9090](http://localhost:9090)
+- **Grafana**: [http://localhost:3000](http://localhost:3000)
+
+---
+
+## Usage
+
+### 1. Test the API
+
+Use the Swagger UI to test the endpoints:
+
+1. Navigate to [http://localhost:8000/docs](http://localhost:8000/docs).
+2. Use the `/predict` endpoint to upload an image and get predictions.
+
+### 2. Monitor Metrics
+
+- **Prometheus**: View application metrics at [http://localhost:9090](http://localhost:9090).
+- **Grafana**: Use the default credentials (`admin`/`admin`) to log in and view dashboards at [http://localhost:3000](http://localhost:3000).
+
+---
+
+## Development
+
+### 1. Activate Virtual Environment
+
+```bash
+source .venv/bin/activate  # On Linux/Mac
+.venv\Scripts\Activate.ps1  # On Windows
+```
+
+### 2. Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### 3. Run the Application Locally
+
+```bash
+uvicorn app.main:app --reload
+```
+
+---
+
+## Troubleshooting
+
+### Common Issues
+
+1. **Database Connection Errors**:
+   - Ensure the MySQL container is running.
+   - Check the `.env` file for correct credentials.
+
+2. **Docker Build Errors**:
+   - Run `docker compose down -v` to remove volumes and rebuild the containers.
+
+3. **Application Crashes**:
+   - Check the logs using:
+     ```bash
+     docker compose logs app
+     ```
+
+---
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+---
+
+## Acknowledgments
+
+- [FastAPI](https://fastapi.tiangolo.com/)
+- [Docker](https://www.docker.com/)
+- [Prometheus](https://prometheus.io/)
+- [Grafana](https://grafana.com/)
